@@ -119,10 +119,10 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 13px 32px;
-      border-radius: 14px;
+      padding: 15px 36px;
+      border-radius: 50px;
       font-family: 'Heebo', sans-serif;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 700;
       text-decoration: none;
       transition: all 0.25s ease;
@@ -158,7 +158,9 @@
       min-height: 100vh;
       display: flex;
       align-items: center;
-      background: var(--white);
+      background: var(--gray-bg);
+      background-image: radial-gradient(circle at 1px 1px, rgba(79,70,229,0.03) 1px, transparent 0);
+      background-size: 32px 32px;
       position: relative;
       overflow: hidden;
       padding: 120px 0 80px;
@@ -201,9 +203,9 @@
 
     .hero-label {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       text-transform: uppercase;
       color: var(--indigo);
       margin-bottom: 20px;
@@ -225,11 +227,12 @@
     .hero h1 .accent { color: var(--indigo); }
 
     .hero-sub {
-      font-size: 19px;
+      font-size: 18px;
       color: var(--gray);
-      max-width: 480px;
+      max-width: 520px;
       font-weight: 400;
       margin-bottom: 28px;
+      line-height: 1.8;
       opacity: 0;
       animation: fadeUp 0.7s 0.5s forwards;
     }
@@ -244,13 +247,27 @@
     }
 
     .hero-tag {
-      background: var(--indigo-bg);
+      background: var(--white);
       color: var(--indigo);
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
-      padding: 6px 16px;
-      border-radius: 20px;
-      border: 1px solid rgba(79,70,229,0.12);
+      padding: 8px 20px;
+      border-radius: 30px;
+      border: 1.5px solid var(--gray-border);
+      transition: all 0.2s;
+    }
+
+    .hero-tag:hover {
+      border-color: var(--indigo-light);
+      background: var(--indigo-bg);
+    }
+
+    .hero-meta {
+      font-size: 14px;
+      color: var(--gray-light);
+      margin-bottom: 36px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.65s forwards;
     }
 
     .hero-buttons {
@@ -266,178 +283,183 @@
       animation: fadeUp 0.9s 0.5s forwards;
     }
 
-    /* ===== RETRO MOCKUP (dashboard) ===== */
-    .retro-frame {
-      background: var(--black);
+    /* ===== APP MOCKUP (light timeline) ===== */
+    .app-frame {
+      background: var(--white);
       border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 40px 80px rgba(15,23,42,0.25);
-      color: #F0F0F0;
+      box-shadow: 0 20px 60px rgba(15,23,42,0.08), 0 0 0 1px rgba(0,0,0,0.04);
       font-size: 14px;
+      color: var(--black);
     }
 
-    .retro-top {
-      background: #1E293B;
+    .app-top {
+      background: var(--indigo);
       padding: 14px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      color: white;
     }
 
-    .retro-dots { display: flex; gap: 7px; }
-    .retro-dots span { width: 11px; height: 11px; border-radius: 50%; }
-    .retro-dots span:nth-child(1) { background: #FF5F57; }
-    .retro-dots span:nth-child(2) { background: #FFBD2E; }
-    .retro-dots span:nth-child(3) { background: #28CA42; }
-
-    .retro-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-    }
-
-    .retro-body { padding: 28px 24px; }
-
-    .retro-greeting {
-      font-size: 26px;
-      font-weight: 800;
-      margin-bottom: 2px;
-    }
-
-    .retro-sub {
+    .app-top-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       font-size: 13px;
-      color: rgba(255,255,255,0.4);
-      margin-bottom: 24px;
-      font-family: 'Space Grotesk';
-      letter-spacing: 0.5px;
-    }
-
-    .retro-card {
-      background: linear-gradient(135deg, var(--indigo), var(--violet));
-      border-radius: 16px;
-      padding: 22px;
-      margin-bottom: 24px;
-    }
-
-    .retro-card-label {
-      font-family: 'Space Grotesk';
-      font-size: 10px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      opacity: 0.6;
-      margin-bottom: 8px;
-    }
-
-    .retro-card-title {
-      font-size: 18px;
-      font-weight: 800;
-      margin-bottom: 4px;
-    }
-
-    .retro-card-meta {
-      font-size: 13px;
-      opacity: 0.7;
-      margin-bottom: 14px;
-    }
-
-    .retro-card-btn {
-      display: inline-block;
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(4px);
-      padding: 7px 18px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 700;
-      border: 1px solid rgba(255,255,255,0.2);
-    }
-
-    .retro-week {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 8px;
-      margin-bottom: 24px;
-    }
-
-    .retro-day {
-      background: #1E293B;
-      border-radius: 12px;
-      padding: 12px 8px;
-      text-align: center;
-      border: 1px solid rgba(255,255,255,0.04);
-      transition: all 0.2s;
-    }
-
-    .retro-day.active {
-      border-color: var(--indigo);
-      background: rgba(79,70,229,0.1);
-    }
-
-    .retro-day-name {
-      font-weight: 800;
-      font-size: 12px;
-      margin-bottom: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .retro-day-class {
-      color: var(--indigo-light);
-      font-weight: 700;
-      font-size: 15px;
-    }
-
-    .retro-day-time {
-      color: rgba(255,255,255,0.3);
-      font-size: 11px;
-      font-family: 'Space Grotesk';
-    }
-
-    .retro-day-status {
-      font-size: 10px;
-      margin-top: 4px;
       font-weight: 600;
     }
 
-    .retro-progress-row {
+    .app-avatar {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
       display: flex;
       align-items: center;
-      gap: 12px;
+      justify-content: center;
+      font-family: 'Space Grotesk';
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .app-syllabus {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Space Grotesk';
+      font-size: 12px;
+      font-weight: 600;
+      opacity: 0.85;
+    }
+
+    .app-syllabus .dot-green {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .app-body {
+      padding: 20px;
+    }
+
+    /* Current lesson card */
+    .tl-current {
+      border: 2px solid var(--indigo-bg);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .tl-current-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       margin-bottom: 10px;
     }
 
-    .retro-progress-label {
-      width: 130px;
+    .tl-current-head .tl-time {
+      font-size: 13px;
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    .tl-badge-next {
+      background: var(--indigo-bg);
+      color: var(--indigo);
       font-size: 12px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.5);
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 8px;
     }
 
-    .retro-progress-bar {
-      flex: 1;
-      height: 5px;
-      background: #1E293B;
-      border-radius: 3px;
-      overflow: hidden;
+    .tl-current h4 {
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
     }
 
-    .retro-progress-fill {
-      height: 100%;
-      border-radius: 3px;
-    }
-
-    .rpf-green { background: var(--green); }
-    .rpf-orange { background: var(--orange); }
-
-    .retro-progress-pct {
-      width: 36px;
-      text-align: left;
-      font-family: 'Space Grotesk';
-      font-weight: 600;
+    .tl-current-meta {
       font-size: 12px;
-      color: rgba(255,255,255,0.4);
+      color: var(--gray-light);
+      margin-bottom: 12px;
+    }
+
+    .tl-current-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .tl-duration {
+      font-size: 13px;
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    .tl-ready {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--green);
+      background: rgba(16,185,129,0.08);
+      padding: 5px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(16,185,129,0.15);
+    }
+
+    /* Timeline items */
+    .tl-list {
+      position: relative;
+      padding-right: 24px;
+    }
+
+    .tl-list::before {
+      content: '';
+      position: absolute;
+      right: 7px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--gray-border);
+    }
+
+    .tl-item {
+      position: relative;
+      padding: 12px 0;
+    }
+
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      right: -20px;
+      top: 18px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gray-border);
+      border: 2px solid var(--white);
+    }
+
+    .tl-item.completed::before {
+      background: var(--indigo-light);
+    }
+
+    .tl-item.upcoming::before {
+      background: var(--white);
+      border: 2px solid var(--gray-border);
+    }
+
+    .tl-item-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 2px;
+    }
+
+    .tl-item-sub {
+      font-size: 12px;
+      color: var(--gray-light);
     }
 
     /* ===== SECTIONS ===== */
@@ -979,7 +1001,7 @@
       .showcase.reverse { direction: rtl; }
       .test-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
-      .retro-week { grid-template-columns: repeat(3, 1fr); }
+      .app-top-info span { font-size: 12px; }
       .section-title { font-size: 28px; }
       .cta-section .section-title { font-size: 26px; }
     }
@@ -1029,9 +1051,9 @@
   <section class="hero">
     <div class="container">
       <div class="hero-text">
-        <div class="hero-label en">THE TEACHING YEAR OS</div>
+        <div class="hero-label en">PEDAGOGICAL OPERATING SYSTEM</div>
         <h1>מתוכנית לימודים<br>לשנת הוראה<br><span class="accent">חכמה.</span></h1>
-        <p class="hero-sub">לא מחולל שיעורים. לא עוד כלי AI. מערכת הפעלה פדגוגית שמתרגמת את תוכנית הלימודים לשנת הוראה חיה, מוכנה ומותאמת.</p>
+        <p class="hero-sub">לא מחולל שיעורים. לא עוד כלי AI.<br>מערכת הפעלה פדגוגית שבונה לך שנת הוראה שלמה.<br>שיעורים, חומרים, הערכה ולו״ז. לפי הסילבוס ומערכת השעות שלך.</p>
         <div class="hero-tags">
           <span class="hero-tag">היסטוריה</span>
           <span class="hero-tag">תנ״ך</span>
@@ -1040,6 +1062,7 @@
           <span class="hero-tag">ספרות</span>
           <span class="hero-tag">אנגלית</span>
         </div>
+        <div class="hero-meta">כיתות ז׳–י״א &middot; תשפ״ז</div>
         <div class="hero-buttons">
           <a href="#cta" class="btn btn-primary">בנו לי שנת הוראה</a>
           <a href="#how" class="btn btn-outline">איך זה עובד</a>
@@ -1047,70 +1070,42 @@
       </div>
 
       <div class="hero-mockup">
-        <div class="retro-frame">
-          <div class="retro-top">
-            <div class="retro-dots"><span></span><span></span><span></span></div>
-            <div class="retro-title en">ClassOS v1.0</div>
+        <div class="app-frame">
+          <div class="app-top">
+            <div class="app-top-info">
+              <div class="app-avatar en">C</div>
+              <span>היסטוריה &middot; ז׳ &middot; בית ספר הגבעה</span>
+            </div>
+            <div class="app-syllabus">
+              <span class="en">syllabus 82%</span>
+              <span class="dot-green"></span>
+            </div>
           </div>
-          <div class="retro-body">
-            <div class="retro-greeting">שלום נועה</div>
-            <div class="retro-sub en">HISTORY &middot; GRADE 7 &middot; HAGIVA SCHOOL</div>
-
-            <div class="retro-card">
-              <div class="retro-card-label en">NEXT LESSON</div>
-              <div class="retro-card-title">הכנסייה בימי הביניים</div>
-              <div class="retro-card-meta">ז׳2 &middot; יום שני &middot; 10:00 &middot; שיעור 10/14</div>
-              <div class="retro-card-btn">פתחי מערך שיעור</div>
-            </div>
-
-            <div class="retro-week">
-              <div class="retro-day">
-                <div class="retro-day-name">א׳</div>
-                <div class="retro-day-class">ז׳1</div>
-                <div class="retro-day-time">10:00</div>
-                <div class="retro-day-status" style="color:var(--green);">&#10003;</div>
+          <div class="app-body">
+            <div class="tl-current">
+              <div class="tl-current-head">
+                <span class="tl-time">שיעור 10 &middot; היום 10:00</span>
+                <span class="tl-badge-next">הבא</span>
               </div>
-              <div class="retro-day active">
-                <div class="retro-day-name">ב׳</div>
-                <div class="retro-day-class">ז׳2</div>
-                <div class="retro-day-time">10:00</div>
-                <div class="retro-day-status" style="color:var(--indigo-light);">&#9654;</div>
-              </div>
-              <div class="retro-day">
-                <div class="retro-day-name">ג׳</div>
-                <div class="retro-day-class">ז׳3</div>
-                <div class="retro-day-time">08:00</div>
-                <div class="retro-day-status" style="color:rgba(255,255,255,0.2);">...</div>
-              </div>
-              <div class="retro-day">
-                <div class="retro-day-name">ד׳</div>
-                <div class="retro-day-class">ז׳1</div>
-                <div class="retro-day-time">11:00</div>
-                <div class="retro-day-status" style="color:rgba(255,255,255,0.2);">...</div>
-              </div>
-              <div class="retro-day">
-                <div class="retro-day-name">ה׳</div>
-                <div class="retro-day-class">ז׳2</div>
-                <div class="retro-day-time">09:00</div>
-                <div class="retro-day-status" style="color:rgba(255,255,255,0.2);">...</div>
+              <h4>הכנסייה בימי הביניים</h4>
+              <div class="tl-current-meta">מטרות &middot; מצגת &middot; דף עבודה &middot; הערכה</div>
+              <div class="tl-current-foot">
+                <span class="tl-duration">45 דק׳</span>
+                <span class="tl-ready">חומרים מוכנים</span>
               </div>
             </div>
 
-            <div class="retro-progress">
-              <div class="retro-progress-row">
-                <div class="retro-progress-label">ז׳1</div>
-                <div class="retro-progress-bar"><div class="retro-progress-fill rpf-green" style="width:62%"></div></div>
-                <div class="retro-progress-pct">62%</div>
+            <div class="tl-list">
+              <div class="tl-item completed">
+                <div class="tl-item-title">שיעור 9 &middot; הפיאודליזם באירופה</div>
+                <div class="tl-item-sub">הושלם &middot; פידבק: קצב טוב, להעמיק בהשוואות</div>
               </div>
-              <div class="retro-progress-row">
-                <div class="retro-progress-label">ז׳2</div>
-                <div class="retro-progress-bar"><div class="retro-progress-fill rpf-orange" style="width:55%"></div></div>
-                <div class="retro-progress-pct">55%</div>
+              <div class="tl-item completed">
+                <div class="tl-item-title">שיעור 8 &middot; מבנה החברה הפיאודלית</div>
+                <div class="tl-item-sub">הושלם &middot; הערכה: 78% הצלחה</div>
               </div>
-              <div class="retro-progress-row">
-                <div class="retro-progress-label">ז׳3</div>
-                <div class="retro-progress-bar"><div class="retro-progress-fill rpf-green" style="width:78%"></div></div>
-                <div class="retro-progress-pct">78%</div>
+              <div class="tl-item upcoming">
+                <div class="tl-item-title">שיעור 11 &middot; מסעות הצלב &middot; יום רביעי</div>
               </div>
             </div>
           </div>
