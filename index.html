@@ -998,10 +998,117 @@
       color: rgba(255,255,255,0.2);
     }
 
+    /* ===== COOKIE BANNER ===== */
+    .cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: var(--black);
+      color: rgba(255,255,255,0.7);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      font-size: 14px;
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.15);
+      transform: translateY(0);
+      transition: transform 0.4s ease;
+    }
+
+    .cookie-banner.hidden { transform: translateY(100%); }
+
+    .cookie-banner a { color: var(--indigo-light); text-decoration: underline; }
+
+    .cookie-btn {
+      padding: 8px 24px;
+      border-radius: 8px;
+      border: none;
+      font-family: 'Heebo';
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .cookie-btn-accept {
+      background: var(--indigo);
+      color: white;
+    }
+
+    .cookie-btn-accept:hover { background: #4338CA; }
+
+    /* ===== HAMBURGER ===== */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: var(--black);
+    }
+
+    .hamburger svg { width: 28px; height: 28px; }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 280px;
+      background: var(--white);
+      z-index: 200;
+      padding: 80px 32px 32px;
+      box-shadow: -8px 0 40px rgba(0,0,0,0.1);
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .mobile-nav.open { transform: translateX(0); }
+
+    .mobile-nav a {
+      display: block;
+      padding: 14px 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gray-border);
+    }
+
+    .mobile-nav a:hover { color: var(--indigo); }
+
+    .mobile-nav-close {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      background: none;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: var(--gray);
+    }
+
+    .mobile-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.3);
+      z-index: 199;
+    }
+
+    .mobile-overlay.open { display: block; }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .container { padding: 0 20px; }
       nav { display: none; }
+      .hamburger { display: block; }
+      .mobile-nav { display: block; }
       .logo-slogan { display: none; }
       section { padding: 80px 0; }
       .hero { padding: 100px 0 60px; min-height: auto; }
@@ -1020,6 +1127,8 @@
       .app-top-info span { font-size: 12px; }
       .section-title { font-size: 28px; }
       .cta-section .section-title { font-size: 26px; }
+      .cookie-banner { flex-direction: column; gap: 12px; text-align: center; padding: 20px; }
+      .step-num { font-size: 48px; }
     }
 
     /* ===== ANIMATIONS ===== */
@@ -1057,8 +1166,12 @@
         <a href="#nextgen">למה</a>
         <a href="#how">איך זה עובד</a>
         <a href="#lesson">השיעור</a>
+        <a href="#faq">שאלות</a>
         <a href="#cta" class="btn btn-primary" style="padding:10px 24px;">בנו לי שנת הוראה</a>
       </nav>
+      <button class="hamburger" onclick="toggleMobileNav()" aria-label="תפריט">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
     </div>
   </header>
 
@@ -1393,17 +1506,60 @@
     </div>
   </footer>
 
+  <!-- MOBILE NAV -->
+  <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileNav()"></div>
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" onclick="toggleMobileNav()">&times;</button>
+    <a href="#nextgen" onclick="toggleMobileNav()">למה זה שונה</a>
+    <a href="#how" onclick="toggleMobileNav()">איך זה עובד</a>
+    <a href="#lesson" onclick="toggleMobileNav()">השיעור</a>
+    <a href="#faq" onclick="toggleMobileNav()">שאלות נפוצות</a>
+    <a href="#cta" onclick="toggleMobileNav()" style="color:var(--indigo);font-weight:800;">בנו לי שנת הוראה</a>
+  </div>
+
+  <!-- COOKIE BANNER -->
+  <div class="cookie-banner" id="cookieBanner">
+    <span>האתר משתמש בקוקיז לשיפור חווית השימוש.</span>
+    <button class="cookie-btn cookie-btn-accept" onclick="acceptCookies()">אישור</button>
+  </div>
+
   <script>
+    // Header scroll
     window.addEventListener('scroll', () => {
       document.getElementById('header').classList.toggle('scrolled', window.scrollY > 60);
     });
 
+    // Scroll reveal
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // Lucide icons
     lucide.createIcons();
+
+    // Mobile nav
+    function toggleMobileNav() {
+      document.getElementById('mobileNav').classList.toggle('open');
+      document.getElementById('mobileOverlay').classList.toggle('open');
+    }
+
+    // Cookies
+    if (localStorage.getItem('cookies_accepted')) {
+      document.getElementById('cookieBanner').classList.add('hidden');
+    }
+    function acceptCookies() {
+      localStorage.setItem('cookies_accepted', '1');
+      document.getElementById('cookieBanner').classList.add('hidden');
+    }
+
+    // FAQ accordion +/- toggle
+    document.querySelectorAll('details').forEach(d => {
+      d.addEventListener('toggle', () => {
+        const icon = d.querySelector('summary span');
+        if (icon) icon.textContent = d.open ? '\u2212' : '+';
+      });
+    });
   </script>
 
 </body>
