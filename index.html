@@ -237,29 +237,46 @@
       animation: fadeUp 0.7s 0.5s forwards;
     }
 
-    .hero-tags {
+    .hero-orbs {
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      align-items: center;
+      gap: 14px;
       margin-bottom: 36px;
       opacity: 0;
       animation: fadeUp 0.7s 0.6s forwards;
+      height: 40px;
+      position: relative;
     }
 
-    .hero-tag {
-      background: var(--white);
-      color: var(--indigo);
-      font-size: 14px;
-      font-weight: 600;
-      padding: 8px 20px;
-      border-radius: 30px;
-      border: 1.5px solid var(--gray-border);
-      transition: all 0.2s;
+    .hero-orb {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      animation: float 3s ease-in-out infinite;
+      flex-shrink: 0;
     }
 
-    .hero-tag:hover {
-      border-color: var(--indigo-light);
-      background: var(--indigo-bg);
+    .hero-orb:nth-child(1) { background: var(--indigo); width: 14px; height: 14px; animation-delay: 0s; }
+    .hero-orb:nth-child(2) { background: var(--indigo-light); width: 10px; height: 10px; animation-delay: 0.5s; }
+    .hero-orb:nth-child(3) { background: var(--violet); width: 16px; height: 16px; animation-delay: 1s; }
+    .hero-orb:nth-child(4) { background: var(--green); width: 11px; height: 11px; animation-delay: 1.5s; }
+    .hero-orb:nth-child(5) { background: var(--orange); width: 13px; height: 13px; animation-delay: 2s; }
+    .hero-orb:nth-child(6) { background: var(--indigo); opacity: 0.4; width: 8px; height: 8px; animation-delay: 0.7s; }
+    .hero-orb:nth-child(7) { background: var(--violet); opacity: 0.3; width: 6px; height: 6px; animation-delay: 1.3s; }
+    .hero-orb:nth-child(8) { background: var(--green); opacity: 0.35; width: 9px; height: 9px; animation-delay: 2.3s; }
+
+    .hero-orb-line {
+      width: 48px;
+      height: 3px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--indigo), var(--indigo-light), var(--violet));
+      animation: float 4s ease-in-out infinite;
+      animation-delay: 0.3s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
 
     .hero-meta {
@@ -992,8 +1009,7 @@
       .hero h1 { font-size: 36px; letter-spacing: -1.5px; }
       .hero-sub { font-size: 16px; }
       .hero-mockup { margin-top: 40px; }
-      .hero-tags { gap: 6px; }
-      .hero-tag { font-size: 12px; padding: 5px 12px; }
+      .hero-orbs { gap: 10px; }
       .problem-grid, .steps-grid, .numbers-grid { grid-template-columns: 1fr; }
       .live-grid { grid-template-columns: 1fr; }
       .live-badges { flex-direction: column; align-items: center; }
@@ -1053,13 +1069,16 @@
 
         <h1>מתוכנית לימודים<br>לשנת הוראה<br><span class="accent">חכמה.</span></h1>
         <p class="hero-sub">לא מחולל שיעורים. לא עוד כלי AI.<br>מערכת הפעלה פדגוגית שבונה לך שנת הוראה שלמה.<br>שיעורים, חומרים, הערכה ולו״ז. לפי הסילבוס ומערכת השעות שלך.</p>
-        <div class="hero-tags">
-          <span class="hero-tag">היסטוריה</span>
-          <span class="hero-tag">תנ״ך</span>
-          <span class="hero-tag">אזרחות</span>
-          <span class="hero-tag">לשון</span>
-          <span class="hero-tag">ספרות</span>
-          <span class="hero-tag">אנגלית</span>
+        <div class="hero-orbs">
+          <span class="hero-orb"></span>
+          <span class="hero-orb"></span>
+          <span class="hero-orb-line"></span>
+          <span class="hero-orb"></span>
+          <span class="hero-orb"></span>
+          <span class="hero-orb"></span>
+          <span class="hero-orb"></span>
+          <span class="hero-orb"></span>
+          <span class="hero-orb"></span>
         </div>
         <div class="hero-meta">כיתות ז׳–י״א &middot; מגיעים לשנת תשפ״ז מוכנים</div>
         <div class="hero-buttons">
