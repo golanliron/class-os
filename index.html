@@ -72,6 +72,12 @@
       justify-content: space-between;
     }
 
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
     .logo {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 28px;
@@ -82,6 +88,15 @@
     }
 
     .logo span { color: var(--indigo); }
+
+    .logo-slogan {
+      font-size: 13px;
+      color: var(--gray);
+      font-weight: 500;
+      border-inline-start: 2px solid var(--gray-border);
+      padding-inline-start: 14px;
+      margin-inline-start: 2px;
+    }
 
     nav {
       display: flex;
@@ -214,9 +229,28 @@
       color: var(--gray);
       max-width: 480px;
       font-weight: 400;
-      margin-bottom: 40px;
+      margin-bottom: 28px;
       opacity: 0;
       animation: fadeUp 0.7s 0.5s forwards;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 36px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.6s forwards;
+    }
+
+    .hero-tag {
+      background: var(--indigo-bg);
+      color: var(--indigo);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(79,70,229,0.12);
     }
 
     .hero-buttons {
@@ -224,7 +258,7 @@
       gap: 14px;
       flex-wrap: wrap;
       opacity: 0;
-      animation: fadeUp 0.7s 0.65s forwards;
+      animation: fadeUp 0.7s 0.7s forwards;
     }
 
     .hero-mockup {
@@ -232,7 +266,7 @@
       animation: fadeUp 0.9s 0.5s forwards;
     }
 
-    /* ===== RETRO MOCKUP (70s dashboard) ===== */
+    /* ===== RETRO MOCKUP (dashboard) ===== */
     .retro-frame {
       background: var(--black);
       border-radius: 24px;
@@ -440,7 +474,7 @@
 
     .bg-gray { background: var(--gray-bg); }
 
-    /* ===== PROBLEM ===== */
+    /* ===== NEXT GENERATION (was PROBLEM) ===== */
     .problem-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -696,6 +730,82 @@
     .s-warn { color: var(--orange); font-weight: 700; }
     .s-bad { color: var(--red); font-weight: 700; }
 
+    /* ===== LIVE CONTEXT ===== */
+    .live-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 56px;
+    }
+
+    .live-card {
+      background: var(--white);
+      border: 1px solid var(--gray-border);
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .live-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-4px);
+    }
+
+    .live-icon {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      background: var(--indigo-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      color: var(--indigo);
+    }
+
+    .live-card h3 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .live-card p {
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    .live-badges {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      border: 1px solid var(--gray-border);
+      border-radius: 30px;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray);
+    }
+
+    .live-badge .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
     /* ===== TESTIMONIALS ===== */
     .test-grid {
       display: grid;
@@ -853,15 +963,25 @@
     @media (max-width: 768px) {
       .container { padding: 0 20px; }
       nav { display: none; }
+      .logo-slogan { display: none; }
       section { padding: 80px 0; }
+      .hero { padding: 100px 0 60px; min-height: auto; }
       .hero .container { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 36px; letter-spacing: -1.5px; }
+      .hero-sub { font-size: 16px; }
       .hero-mockup { margin-top: 40px; }
+      .hero-tags { gap: 6px; }
+      .hero-tag { font-size: 12px; padding: 5px 12px; }
       .problem-grid, .steps-grid, .numbers-grid { grid-template-columns: 1fr; }
+      .live-grid { grid-template-columns: 1fr; }
+      .live-badges { flex-direction: column; align-items: center; }
       .showcase { grid-template-columns: 1fr; gap: 40px; }
       .showcase.reverse { direction: rtl; }
       .test-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
       .retro-week { grid-template-columns: repeat(3, 1fr); }
+      .section-title { font-size: 28px; }
+      .cta-section .section-title { font-size: 26px; }
     }
 
     /* ===== ANIMATIONS ===== */
@@ -891,13 +1011,16 @@
   <!-- HEADER -->
   <header id="header">
     <div class="container">
-      <a href="#" class="logo en">Class<span>OS</span></a>
+      <div class="logo-area">
+        <a href="#" class="logo en">Class<span>OS</span></a>
+        <span class="logo-slogan">שנה שלמה של הוראה, מוכנה ללמידה.</span>
+      </div>
       <nav>
-        <a href="#problem">למה</a>
+        <a href="#nextgen">למה</a>
         <a href="#how">איך זה עובד</a>
         <a href="#lesson">השיעור</a>
         <a href="#principal">למנהלות</a>
-        <a href="#cta" class="btn btn-primary" style="padding:10px 24px;">התחילי בחינם</a>
+        <a href="#cta" class="btn btn-primary" style="padding:10px 24px;">בנו לי שנת הוראה</a>
       </nav>
     </div>
   </header>
@@ -907,10 +1030,18 @@
     <div class="container">
       <div class="hero-text">
         <div class="hero-label en">THE TEACHING YEAR OS</div>
-        <h1>את לא צריכה<br>לתכנן את השנה<br><span class="accent">לבד.</span></h1>
-        <p class="hero-sub">ClassOS מתרגמת את תוכנית הלימודים לשנת הוראה חיה, מוכנה ומותאמת. נכנסת — ורואה את השיעור הבא.</p>
+        <h1>מתוכנית לימודים<br>לשנת הוראה<br><span class="accent">חכמה.</span></h1>
+        <p class="hero-sub">לא מחולל שיעורים. לא עוד כלי AI. מערכת הפעלה פדגוגית שמתרגמת את תוכנית הלימודים לשנת הוראה חיה, מוכנה ומותאמת.</p>
+        <div class="hero-tags">
+          <span class="hero-tag">היסטוריה</span>
+          <span class="hero-tag">תנ״ך</span>
+          <span class="hero-tag">אזרחות</span>
+          <span class="hero-tag">לשון</span>
+          <span class="hero-tag">ספרות</span>
+          <span class="hero-tag">אנגלית</span>
+        </div>
         <div class="hero-buttons">
-          <a href="#cta" class="btn btn-primary">התחילי בחינם</a>
+          <a href="#cta" class="btn btn-primary">בנו לי שנת הוראה</a>
           <a href="#how" class="btn btn-outline">איך זה עובד</a>
         </div>
       </div>
@@ -949,19 +1080,19 @@
                 <div class="retro-day-name">ג׳</div>
                 <div class="retro-day-class">ז׳3</div>
                 <div class="retro-day-time">08:00</div>
-                <div class="retro-day-status" style="color:rgba(255,255,255,0.2);">&mdash;</div>
+                <div class="retro-day-status" style="color:rgba(255,255,255,0.2);">...</div>
               </div>
               <div class="retro-day">
                 <div class="retro-day-name">ד׳</div>
                 <div class="retro-day-class">ז׳1</div>
                 <div class="retro-day-time">11:00</div>
-                <div class="retro-day-status" style="color:rgba(255,255,255,0.2);">&mdash;</div>
+                <div class="retro-day-status" style="color:rgba(255,255,255,0.2);">...</div>
               </div>
               <div class="retro-day">
                 <div class="retro-day-name">ה׳</div>
                 <div class="retro-day-class">ז׳2</div>
                 <div class="retro-day-time">09:00</div>
-                <div class="retro-day-status" style="color:rgba(255,255,255,0.2);">&mdash;</div>
+                <div class="retro-day-status" style="color:rgba(255,255,255,0.2);">...</div>
               </div>
             </div>
 
@@ -988,27 +1119,27 @@
     </div>
   </section>
 
-  <!-- PROBLEM -->
-  <section id="problem" class="bg-gray">
+  <!-- NEXT GENERATION -->
+  <section id="nextgen" class="bg-gray">
     <div class="container text-center">
-      <div class="section-label en reveal">THE PROBLEM</div>
-      <h2 class="section-title reveal">כל שנה, אותו סיפור.</h2>
-      <p class="section-sub reveal">שלוש בעיות שכל מורה מכירה.</p>
+      <div class="section-label en reveal">NEXT GENERATION</div>
+      <h2 class="section-title reveal">לא עוד כלי. דור הבא של ההוראה.</h2>
+      <p class="section-sub reveal">שלושה דברים שמערכת הפעלה פדגוגית עושה אחרת.</p>
       <div class="problem-grid">
         <div class="problem-card reveal reveal-d1">
-          <div class="problem-icon"><i data-lucide="book-open" style="width:24px;height:24px;"></i></div>
-          <h3>סילבוס ענק, שנה קצרה</h3>
-          <p>את יודעת מה צריך ללמד. אבל איך מחלקים 60 שעות לשנה שלמה, עם חופשות באמצע?</p>
+          <div class="problem-icon"><i data-lucide="calendar-check" style="width:24px;height:24px;"></i></div>
+          <h3>שנה שלמה, לא שיעור בודד</h3>
+          <p>60 שיעורים מותאמים לתאריכים אמיתיים, חופשות וימי שיא. תוכנית שנתית שלמה ביום אחד.</p>
         </div>
         <div class="problem-card reveal reveal-d2">
-          <div class="problem-icon"><i data-lucide="calendar-x" style="width:24px;height:24px;"></i></div>
-          <h3>התוכנית מתפוררת</h3>
-          <p>ביטולים, חופשות, ימי שיא. עד דצמבר התוכנית כבר לא רלוונטית.</p>
+          <div class="problem-icon"><i data-lucide="refresh-cw" style="width:24px;height:24px;"></i></div>
+          <h3>מתעדכנת בזמן אמת</h3>
+          <p>ביטולים, שינויים, כיתה שלא הבינה. המערכת מתאימה את התוכנית לפי מה שקורה בפועל.</p>
         </div>
         <div class="problem-card reveal reveal-d3">
-          <div class="problem-icon"><i data-lucide="help-circle" style="width:24px;height:24px;"></i></div>
-          <h3>הכיתה לא הבינה, ומה עכשיו?</h3>
-          <p>לא הספקת, הכיתה לא הבינה, ואין מי שיגיד לך מה השיעור הבא הנכון.</p>
+          <div class="problem-icon"><i data-lucide="sparkles" style="width:24px;height:24px;"></i></div>
+          <h3>לשנת תשפ״ז מוכנה.</h3>
+          <p>לא צריכה לחכות לחופש הגדול. מכניסה פרטים, מקבלת תוכנית, ומתחילה ללמד.</p>
         </div>
       </div>
     </div>
@@ -1051,7 +1182,7 @@
           <div class="lesson-frame-body">
             <div class="lf-head">
               <div class="lf-head-top en">LESSON 10 / 14</div>
-              <h4>הכנסייה בימי הביניים — עוצמה ותפקיד</h4>
+              <h4>הכנסייה בימי הביניים, עוצמה ותפקיד</h4>
               <p>ז׳2 &middot; יום שני 13.1 &middot; 10:00</p>
             </div>
             <div class="lf-block">
@@ -1063,14 +1194,14 @@
             </div>
             <div class="lf-block">
               <div class="lf-block-title"><i data-lucide="play" style="width:15px;height:15px;color:var(--indigo-light);"></i> פתיחה (10 דק׳)</div>
-              <p>"מי הדמות הכי חזקה בעולם?" — דיון, חיבור לימי הביניים</p>
+              <p>"מי הדמות הכי חזקה בעולם?" דיון, חיבור לימי הביניים</p>
             </div>
             <div class="lf-block">
               <div class="lf-block-title"><i data-lucide="layers" style="width:15px;height:15px;color:var(--indigo-light);"></i> גוף השיעור (25 דק׳)</div>
               <ul>
-                <li>היררכיה: אפיפיור &rarr; בישופים &rarr; כמרים</li>
+                <li>היררכיה: אפיפיור, בישופים, כמרים</li>
                 <li>מקורות כוח: קרקעות, השכלה, חוק</li>
-                <li>עבודה בזוגות — טבלת השוואה</li>
+                <li>עבודה בזוגות, טבלת השוואה</li>
               </ul>
             </div>
             <div class="lf-block">
@@ -1081,13 +1212,13 @@
         </div>
         <div class="showcase-info reveal reveal-d2">
           <div class="section-label en">THE LESSON</div>
-          <h2 class="section-title">השיעור הבא שלך —<br>מוכן ומחכה.</h2>
-          <p class="section-sub">נכנסת ורואה שיעור מלא. מטרות, פתיחה, גוף, תרגול, סיכום וחומרים — הכל מותאם לסילבוס.</p>
+          <h2 class="section-title">השיעור הבא שלך<br>מוכן ומחכה.</h2>
+          <p class="section-sub">נכנסת ורואה שיעור מלא. מטרות, פתיחה, גוף, תרגול, סיכום וחומרים. הכל מותאם לסילבוס.</p>
           <ul class="feature-list">
             <li><div class="feature-check">&#10003;</div> מטרות לפי תוכנית משרד החינוך</li>
             <li><div class="feature-check">&#10003;</div> פתיחה, גוף, תרגול וסיכום</li>
             <li><div class="feature-check">&#10003;</div> דפי עבודה וחומרים מצורפים</li>
-            <li><div class="feature-check">&#10003;</div> דיווח 30 שניות &rarr; השיעור הבא מתעדכן</li>
+            <li><div class="feature-check">&#10003;</div> דיווח 30 שניות, השיעור הבא מתעדכן</li>
           </ul>
         </div>
       </div>
@@ -1103,8 +1234,8 @@
           <h2 class="section-title">תמונת מצב<br>בלי לרדוף אחרי מורות.</h2>
           <p class="section-sub">הדשבורד מזהה בעיות לפני שהן מצטברות. תמיכה, לא פיקוח.</p>
           <ul class="feature-list">
-            <li><div class="feature-check">&#10003;</div> התקדמות כל הכיתות מול הסילבוס</li>
-            <li><div class="feature-check">&#10003;</div> זיהוי כיתות בפיגור אוטומטי</li>
+            <li><div class="feature-check">&#10003;</div> התקדמות כל המקצועות מול הסילבוס</li>
+            <li><div class="feature-check">&#10003;</div> זיהוי מקצועות בפיגור אוטומטי</li>
             <li><div class="feature-check">&#10003;</div> המלצות תמיכה למורות</li>
             <li><div class="feature-check">&#10003;</div> השוואה בין כיתות מקבילות</li>
           </ul>
@@ -1113,23 +1244,23 @@
           <div class="lesson-frame-bar"><span></span><span></span><span></span></div>
           <div class="lesson-frame-body">
             <div style="font-size:18px;font-weight:800;margin-bottom:2px;">דשבורד מנהלת</div>
-            <div style="font-size:11px;color:rgba(255,255,255,0.35);margin-bottom:18px;font-family:'Space Grotesk';letter-spacing:1px;text-transform:uppercase;">Hagiva School &middot; History Grade 7</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.35);margin-bottom:18px;font-family:'Space Grotesk';letter-spacing:1px;text-transform:uppercase;">Hagiva School &middot; Grade 7 Overview</div>
 
             <div class="pf-alert">
               <div class="pf-alert-title en">&#9888; ATTENTION</div>
               <ul style="list-style:none;">
-                <li>&middot; ז׳2 בפיגור של שבוע — נועה כהן</li>
-                <li>&middot; ז׳4 לא דווחו 3 שיעורים — דנה לוי</li>
-                <li>&middot; ז׳5 "לא הבינו" 3 פעמים ברצף</li>
+                <li>&middot; היסטוריה ז׳2 בפיגור של שבוע</li>
+                <li>&middot; אזרחות ז׳4 לא דווחו 3 שיעורים</li>
+                <li>&middot; תנ״ך ז׳5 "לא הבינו" 3 פעמים ברצף</li>
               </ul>
             </div>
 
             <table class="pf-table">
-              <thead><tr><th>מורה</th><th>כיתות</th><th>קצב</th><th>דיווח</th></tr></thead>
+              <thead><tr><th>מקצוע</th><th>כיתות</th><th>קצב</th><th>דיווח</th></tr></thead>
               <tbody>
-                <tr><td>נועה כהן</td><td>ז׳1, ז׳2</td><td class="s-warn">&#9888; פיגור</td><td>90%</td></tr>
-                <tr><td>שרית אבו</td><td>ז׳3, ז׳4</td><td class="s-ok">&#10003; תקין</td><td>95%</td></tr>
-                <tr><td>דנה לוי</td><td>ז׳5, ז׳6</td><td class="s-ok">&#10003; תקין</td><td class="s-bad">72%</td></tr>
+                <tr><td>היסטוריה</td><td>ז׳1, ז׳2</td><td class="s-warn">&#9888; פיגור</td><td>90%</td></tr>
+                <tr><td>אזרחות</td><td>ז׳3, ז׳4</td><td class="s-ok">&#10003; תקין</td><td>95%</td></tr>
+                <tr><td>תנ״ך</td><td>ז׳5, ז׳6</td><td class="s-ok">&#10003; תקין</td><td class="s-bad">72%</td></tr>
               </tbody>
             </table>
           </div>
@@ -1138,8 +1269,38 @@
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
+  <!-- LIVE CONTEXT -->
   <section class="bg-gray">
+    <div class="container text-center">
+      <div class="section-label en reveal">LIVE CONTEXT</div>
+      <h2 class="section-title reveal">המערכת יודעת מה קורה. עכשיו.</h2>
+      <p class="section-sub reveal">ClassOS לא רק מתכננת. היא עוקבת, מתעדכנת ומגיבה בזמן אמת.</p>
+      <div class="live-grid">
+        <div class="live-card reveal reveal-d1">
+          <div class="live-icon"><i data-lucide="alert-triangle" style="width:22px;height:22px;"></i></div>
+          <h3>זיהוי פיגור</h3>
+          <p>כיתה שנשארה מאחור מקבלת התרעה אוטומטית עם המלצה להתאמה.</p>
+        </div>
+        <div class="live-card reveal reveal-d2">
+          <div class="live-icon"><i data-lucide="git-merge" style="width:22px;height:22px;"></i></div>
+          <h3>התאמה דינמית</h3>
+          <p>ביטול שיעור, חופשה, שינוי מערכת. התוכנית מתעדכנת מיד.</p>
+        </div>
+        <div class="live-card reveal reveal-d3">
+          <div class="live-icon"><i data-lucide="bar-chart-3" style="width:22px;height:22px;"></i></div>
+          <h3>תמונת מצב חיה</h3>
+          <p>אחוזי כיסוי סילבוס, דיווחי מורות, כיתות בפיגור. הכל במקום אחד.</p>
+        </div>
+      </div>
+      <div class="live-badges reveal">
+        <div class="live-badge"><span class="dot"></span> 3 כיתות עודכנו הבוקר</div>
+        <div class="live-badge"><span class="dot"></span> התוכנית מסונכרנת עם לוח השנה</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section>
     <div class="container text-center">
       <div class="section-label en reveal">TESTIMONIALS</div>
       <h2 class="section-title reveal">מה אומרות מורות ומנהלות</h2>
@@ -1157,7 +1318,7 @@
   </section>
 
   <!-- NUMBERS -->
-  <section>
+  <section class="bg-gray">
     <div class="container text-center">
       <div class="section-label en reveal">BY THE NUMBERS</div>
       <h2 class="section-title reveal">מספרים שמספרים את הסיפור.</h2>
@@ -1182,17 +1343,17 @@
   <section id="cta" class="cta-section">
     <div class="container">
       <div class="section-label en reveal">GET STARTED</div>
-      <h2 class="section-title reveal" style="color:white;">מוכנה לשנת הוראה<br>שמתנהלת <span style="color:var(--indigo-light);">בעצמה</span>?</h2>
-      <p class="section-sub reveal" style="color:rgba(255,255,255,0.45);margin:0 auto 32px;">היסטוריה כיתה ז׳ — זמינה עכשיו בחינם.</p>
+      <h2 class="section-title reveal" style="color:white;">אתם עדיין כותבים פרומפטים?<br><span style="color:var(--indigo-light);">הדור הבא כבר כאן.</span></h2>
+      <p class="section-sub reveal" style="color:rgba(255,255,255,0.45);margin:0 auto 32px;">היסטוריה כיתה ז׳ זמינה עכשיו בחינם.</p>
       <div class="reveal reveal-d1" style="margin-bottom:24px;">
-        <a href="#" class="btn btn-primary" style="font-size:17px;padding:16px 44px;">התחילי בחינם</a>
+        <a href="#" class="btn btn-primary" style="font-size:17px;padding:16px 44px;">בנו לי שנת הוראה</a>
       </div>
-      <div class="cta-or reveal reveal-d2">או השאירי פרטים</div>
-      <form class="cta-form reveal reveal-d3" onsubmit="event.preventDefault();this.innerHTML='<p style=color:var(--green);font-size:18px;font-weight:700;text-align:center;padding:20px;>תודה! נחזור אלייך בקרוב.</p>';">
+      <div class="cta-or reveal reveal-d2">או השאירו פרטים</div>
+      <form class="cta-form reveal reveal-d3" onsubmit="event.preventDefault();this.innerHTML='<p style=color:var(--green);font-size:18px;font-weight:700;text-align:center;padding:20px;>תודה! נחזור אליכם בקרוב.</p>';">
         <input type="text" placeholder="שם מלא" required>
         <input type="tel" placeholder="טלפון" required>
         <input type="text" placeholder="שם בית הספר">
-        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">שלחי</button>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">שלחו</button>
       </form>
     </div>
   </section>
