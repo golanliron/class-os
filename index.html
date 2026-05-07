@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClassOS — מערכת ההפעלה של שנת ההוראה</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --indigo: #4F46E5;
+      --indigo-light: #818CF8;
+      --indigo-bg: #EEF2FF;
+      --violet: #7C3AED;
+      --white: #FFFFFF;
+      --black: #0F172A;
+      --black-soft: #1E293B;
+      --gray: #64748B;
+      --gray-light: #94A3B8;
+      --gray-bg: #F8FAFC;
+      --gray-border: #E2E8F0;
+      --green: #10B981;
+      --orange: #F59E0B;
+      --red: #EF4444;
+      --border: rgba(0,0,0,0.06);
+      --shadow: 0 4px 24px rgba(15,23,42,0.06);
+      --shadow-lg: 0 20px 60px rgba(15,23,42,0.1);
+      --radius: 20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Heebo', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .en { font-family: 'Space Grotesk', sans-serif; }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed;
+      top: 0; right: 0; left: 0;
+      z-index: 100;
+      padding: 20px 0;
+      transition: all 0.3s ease;
+    }
+
+    header.scrolled {
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(20px);
+      padding: 14px 0;
+      box-shadow: 0 1px 0 var(--gray-border);
+    }
+
+    header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--black);
+      text-decoration: none;
+      letter-spacing: -1.5px;
+    }
+
+    .logo span { color: var(--indigo); }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--gray);
+      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--black); }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 32px;
+      border-radius: 14px;
+      font-family: 'Heebo', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--indigo);
+      color: white;
+      box-shadow: 0 4px 16px rgba(79,70,229,0.3);
+    }
+
+    .btn-primary:hover {
+      background: #4338CA;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(79,70,229,0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--black);
+      border: 2px solid var(--gray-border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--indigo);
+      color: var(--indigo);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 80px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40%; right: -20%;
+      width: 80%;
+      height: 140%;
+      border-radius: 50%;
+      background: var(--indigo);
+      opacity: 0.03;
+      filter: blur(100px);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%; left: -15%;
+      width: 60%;
+      height: 120%;
+      border-radius: 50%;
+      background: var(--violet);
+      opacity: 0.03;
+      filter: blur(120px);
+      pointer-events: none;
+    }
+
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--indigo);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s forwards;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 5.5vw, 68px);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      letter-spacing: -2.5px;
+      color: var(--black);
+      opacity: 0;
+      animation: fadeUp 0.7s 0.35s forwards;
+    }
+
+    .hero h1 .accent { color: var(--indigo); }
+
+    .hero-sub {
+      font-size: 19px;
+      color: var(--gray);
+      max-width: 480px;
+      font-weight: 400;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.5s forwards;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.65s forwards;
+    }
+
+    .hero-mockup {
+      opacity: 0;
+      animation: fadeUp 0.9s 0.5s forwards;
+    }
+
+    /* ===== RETRO MOCKUP (70s dashboard) ===== */
+    .retro-frame {
+      background: var(--black);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(15,23,42,0.25);
+      color: #F0F0F0;
+      font-size: 14px;
+    }
+
+    .retro-top {
+      background: #1E293B;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .retro-dots { display: flex; gap: 7px; }
+    .retro-dots span { width: 11px; height: 11px; border-radius: 50%; }
+    .retro-dots span:nth-child(1) { background: #FF5F57; }
+    .retro-dots span:nth-child(2) { background: #FFBD2E; }
+    .retro-dots span:nth-child(3) { background: #28CA42; }
+
+    .retro-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .retro-body { padding: 28px 24px; }
+
+    .retro-greeting {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 2px;
+    }
+
+    .retro-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 24px;
+      font-family: 'Space Grotesk';
+      letter-spacing: 0.5px;
+    }
+
+    .retro-card {
+      background: linear-gradient(135deg, var(--indigo), var(--violet));
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 24px;
+    }
+
+    .retro-card-label {
+      font-family: 'Space Grotesk';
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 8px;
+    }
+
+    .retro-card-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .retro-card-meta {
+      font-size: 13px;
+      opacity: 0.7;
+      margin-bottom: 14px;
+    }
+
+    .retro-card-btn {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(4px);
+      padding: 7px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .retro-week {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .retro-day {
+      background: #1E293B;
+      border-radius: 12px;
+      padding: 12px 8px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.04);
+      transition: all 0.2s;
+    }
+
+    .retro-day.active {
+      border-color: var(--indigo);
+      background: rgba(79,70,229,0.1);
+    }
+
+    .retro-day-name {
+      font-weight: 800;
+      font-size: 12px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .retro-day-class {
+      color: var(--indigo-light);
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .retro-day-time {
+      color: rgba(255,255,255,0.3);
+      font-size: 11px;
+      font-family: 'Space Grotesk';
+    }
+
+    .retro-day-status {
+      font-size: 10px;
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    .retro-progress-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .retro-progress-label {
+      width: 130px;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .retro-progress-bar {
+      flex: 1;
+      height: 5px;
+      background: #1E293B;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .retro-progress-fill {
+      height: 100%;
+      border-radius: 3px;
+    }
+
+    .rpf-green { background: var(--green); }
+    .rpf-orange { background: var(--orange); }
+
+    .retro-progress-pct {
+      width: 36px;
+      text-align: left;
+      font-family: 'Space Grotesk';
+      font-weight: 600;
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ===== SECTIONS ===== */
+    section { padding: 120px 0; }
+
+    .section-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--indigo);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: clamp(30px, 4vw, 52px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin-bottom: 18px;
+      color: var(--black);
+    }
+
+    .section-sub {
+      color: var(--gray);
+      font-size: 18px;
+      font-weight: 400;
+      max-width: 520px;
+    }
+
+    .text-center { text-align: center; }
+    .text-center .section-sub { margin: 0 auto; }
+
+    .bg-gray { background: var(--gray-bg); }
+
+    /* ===== PROBLEM ===== */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 56px;
+    }
+
+    .problem-card {
+      background: var(--white);
+      border: 1px solid var(--gray-border);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      transition: all 0.3s ease;
+    }
+
+    .problem-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-6px);
+      border-color: var(--indigo-light);
+    }
+
+    .problem-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      background: var(--indigo-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      color: var(--indigo);
+    }
+
+    .problem-card h3 {
+      font-size: 21px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+
+    .problem-card p {
+      color: var(--gray);
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    /* ===== STEPS ===== */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 64px;
+    }
+
+    .step { text-align: right; }
+
+    .step-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 80px;
+      font-weight: 700;
+      color: var(--indigo);
+      line-height: 1;
+      margin-bottom: 12px;
+      opacity: 0.15;
+    }
+
+    .step-line {
+      width: 48px;
+      height: 3px;
+      background: var(--indigo);
+      border-radius: 2px;
+      margin-bottom: 16px;
+    }
+
+    .step h3 {
+      font-size: 21px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+
+    .step p {
+      color: var(--gray);
+      font-size: 15px;
+    }
+
+    /* ===== SHOWCASE ===== */
+    .showcase {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .showcase.reverse { direction: ltr; }
+    .showcase.reverse > * { direction: rtl; }
+
+    .showcase-info .section-sub { margin-bottom: 32px; }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .feature-check {
+      flex-shrink: 0;
+      width: 24px; height: 24px;
+      border-radius: 8px;
+      background: var(--indigo-bg);
+      color: var(--indigo);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      margin-top: 2px;
+    }
+
+    /* ===== LESSON MOCKUP ===== */
+    .lesson-frame {
+      background: var(--black);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      color: #F0F0F0;
+    }
+
+    .lesson-frame-bar {
+      background: #1E293B;
+      padding: 10px 16px;
+      display: flex;
+      gap: 6px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .lesson-frame-bar span { width: 9px; height: 9px; border-radius: 50%; }
+    .lesson-frame-bar span:nth-child(1) { background: #FF5F57; }
+    .lesson-frame-bar span:nth-child(2) { background: #FFBD2E; }
+    .lesson-frame-bar span:nth-child(3) { background: #28CA42; }
+
+    .lesson-frame-body { padding: 24px; }
+
+    .lf-head {
+      background: linear-gradient(135deg, var(--indigo), var(--violet));
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .lf-head-top {
+      font-family: 'Space Grotesk';
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 6px;
+    }
+
+    .lf-head h4 { font-size: 17px; font-weight: 800; margin-bottom: 3px; }
+    .lf-head p { font-size: 12px; opacity: 0.75; }
+
+    .lf-block { margin-bottom: 16px; }
+
+    .lf-block-title {
+      font-weight: 800;
+      font-size: 13px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lf-block p { color: rgba(255,255,255,0.5); font-size: 13px; }
+
+    .lf-block ul { list-style: none; }
+
+    .lf-block ul li {
+      color: rgba(255,255,255,0.5);
+      font-size: 13px;
+      padding-right: 14px;
+      position: relative;
+      margin-bottom: 4px;
+    }
+
+    .lf-block ul li::before {
+      content: '';
+      position: absolute;
+      right: 0; top: 9px;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--indigo-light);
+    }
+
+    /* ===== PRINCIPAL MOCKUP ===== */
+    .pf-alert {
+      background: rgba(245,158,11,0.08);
+      border: 1px solid rgba(245,158,11,0.15);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 18px;
+    }
+
+    .pf-alert-title {
+      font-weight: 800;
+      font-size: 12px;
+      color: var(--orange);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'Space Grotesk';
+    }
+
+    .pf-alert li {
+      color: rgba(255,255,255,0.45);
+      font-size: 12px;
+      margin-bottom: 3px;
+    }
+
+    .pf-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .pf-table th {
+      text-align: right;
+      padding: 8px 10px;
+      font-family: 'Space Grotesk';
+      font-weight: 600;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.3);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .pf-table td {
+      padding: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 13px;
+    }
+
+    .s-ok { color: var(--green); font-weight: 700; }
+    .s-warn { color: var(--orange); font-weight: 700; }
+    .s-bad { color: var(--red); font-weight: 700; }
+
+    /* ===== TESTIMONIALS ===== */
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .test-card {
+      background: var(--white);
+      border: 1px solid var(--gray-border);
+      border-radius: var(--radius);
+      padding: 40px;
+      position: relative;
+    }
+
+    .test-card::before {
+      content: '\201D';
+      position: absolute;
+      top: 16px; right: 28px;
+      font-size: 80px;
+      font-weight: 900;
+      color: var(--indigo);
+      opacity: 0.08;
+      line-height: 1;
+      font-family: Georgia, serif;
+    }
+
+    .test-card p {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      color: var(--black);
+    }
+
+    .test-author { font-size: 14px; color: var(--gray); }
+    .test-author strong { color: var(--black); }
+
+    /* ===== NUMBERS ===== */
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .number-item {
+      text-align: center;
+      padding: 48px 24px;
+      background: var(--white);
+      border: 1px solid var(--gray-border);
+      border-radius: var(--radius);
+    }
+
+    .number-item h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 64px;
+      font-weight: 700;
+      color: var(--indigo);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .number-item p {
+      color: var(--gray);
+      font-size: 15px;
+    }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      text-align: center;
+      background: var(--black) !important;
+      color: var(--white);
+    }
+
+    .cta-section .section-label { color: var(--indigo-light); }
+    .cta-section .section-title { color: var(--white); }
+    .cta-section .section-sub { color: rgba(255,255,255,0.5); }
+
+    .cta-form {
+      max-width: 400px;
+      margin: 40px auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .cta-form input {
+      padding: 15px 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      color: white;
+      font-family: 'Heebo';
+      font-size: 15px;
+      font-weight: 500;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .cta-form input::placeholder { color: rgba(255,255,255,0.25); }
+    .cta-form input:focus { border-color: var(--indigo); }
+
+    .cta-or { color: rgba(255,255,255,0.25); font-size: 14px; margin: 16px 0 8px; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--black);
+      color: rgba(255,255,255,0.5);
+      padding: 60px 0 30px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand .logo span { color: var(--indigo-light); }
+    .footer-brand p { margin-top: 10px; font-size: 14px; color: rgba(255,255,255,0.35); }
+
+    .footer-col h4 {
+      font-family: 'Space Grotesk';
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .footer-col a {
+      display: block;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: white; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 24px;
+      text-align: center;
+      font-size: 13px;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .container { padding: 0 20px; }
+      nav { display: none; }
+      section { padding: 80px 0; }
+      .hero .container { grid-template-columns: 1fr; }
+      .hero-mockup { margin-top: 40px; }
+      .problem-grid, .steps-grid, .numbers-grid { grid-template-columns: 1fr; }
+      .showcase { grid-template-columns: 1fr; gap: 40px; }
+      .showcase.reverse { direction: rtl; }
+      .test-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .retro-week { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="header">
+    <div class="container">
+      <a href="#" class="logo en">Class<span>OS</span></a>
+      <nav>
+        <a href="#problem">למה</a>
+        <a href="#how">איך זה עובד</a>
+        <a href="#lesson">השיעור</a>
+        <a href="#principal">למנהלות</a>
+        <a href="#cta" class="btn btn-primary" style="padding:10px 24px;">התחילי בחינם</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-text">
+        <div class="hero-label en">THE TEACHING YEAR OS</div>
+        <h1>את לא צריכה<br>לתכנן את השנה<br><span class="accent">לבד.</span></h1>
+        <p class="hero-sub">ClassOS מתרגמת את תוכנית הלימודים לשנת הוראה חיה, מוכנה ומותאמת. נכנסת — ורואה את השיעור הבא.</p>
+        <div class="hero-buttons">
+          <a href="#cta" class="btn btn-primary">התחילי בחינם</a>
+          <a href="#how" class="btn btn-outline">איך זה עובד</a>
+        </div>
+      </div>
+
+      <div class="hero-mockup">
+        <div class="retro-frame">
+          <div class="retro-top">
+            <div class="retro-dots"><span></span><span></span><span></span></div>
+            <div class="retro-title en">ClassOS v1.0</div>
+          </div>
+          <div class="retro-body">
+            <div class="retro-greeting">שלום נועה</div>
+            <div class="retro-sub en">HISTORY &middot; GRADE 7 &middot; HAGIVA SCHOOL</div>
+
+            <div class="retro-card">
+              <div class="retro-card-label en">NEXT LESSON</div>
+              <div class="retro-card-title">הכנסייה בימי הביניים</div>
+              <div class="retro-card-meta">ז׳2 &middot; יום שני &middot; 10:00 &middot; שיעור 10/14</div>
+              <div class="retro-card-btn">פתחי מערך שיעור</div>
+            </div>
+
+            <div class="retro-week">
+              <div class="retro-day">
+                <div class="retro-day-name">א׳</div>
+                <div class="retro-day-class">ז׳1</div>
+                <div class="retro-day-time">10:00</div>
+                <div class="retro-day-status" style="color:var(--green);">&#10003;</div>
+              </div>
+              <div class="retro-day active">
+                <div class="retro-day-name">ב׳</div>
+                <div class="retro-day-class">ז׳2</div>
+                <div class="retro-day-time">10:00</div>
+                <div class="retro-day-status" style="color:var(--indigo-light);">&#9654;</div>
+              </div>
+              <div class="retro-day">
+                <div class="retro-day-name">ג׳</div>
+                <div class="retro-day-class">ז׳3</div>
+                <div class="retro-day-time">08:00</div>
+                <div class="retro-day-status" style="color:rgba(255,255,255,0.2);">&mdash;</div>
+              </div>
+              <div class="retro-day">
+                <div class="retro-day-name">ד׳</div>
+                <div class="retro-day-class">ז׳1</div>
+                <div class="retro-day-time">11:00</div>
+                <div class="retro-day-status" style="color:rgba(255,255,255,0.2);">&mdash;</div>
+              </div>
+              <div class="retro-day">
+                <div class="retro-day-name">ה׳</div>
+                <div class="retro-day-class">ז׳2</div>
+                <div class="retro-day-time">09:00</div>
+                <div class="retro-day-status" style="color:rgba(255,255,255,0.2);">&mdash;</div>
+              </div>
+            </div>
+
+            <div class="retro-progress">
+              <div class="retro-progress-row">
+                <div class="retro-progress-label">ז׳1</div>
+                <div class="retro-progress-bar"><div class="retro-progress-fill rpf-green" style="width:62%"></div></div>
+                <div class="retro-progress-pct">62%</div>
+              </div>
+              <div class="retro-progress-row">
+                <div class="retro-progress-label">ז׳2</div>
+                <div class="retro-progress-bar"><div class="retro-progress-fill rpf-orange" style="width:55%"></div></div>
+                <div class="retro-progress-pct">55%</div>
+              </div>
+              <div class="retro-progress-row">
+                <div class="retro-progress-label">ז׳3</div>
+                <div class="retro-progress-bar"><div class="retro-progress-fill rpf-green" style="width:78%"></div></div>
+                <div class="retro-progress-pct">78%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="bg-gray">
+    <div class="container text-center">
+      <div class="section-label en reveal">THE PROBLEM</div>
+      <h2 class="section-title reveal">כל שנה, אותו סיפור.</h2>
+      <p class="section-sub reveal">שלוש בעיות שכל מורה מכירה.</p>
+      <div class="problem-grid">
+        <div class="problem-card reveal reveal-d1">
+          <div class="problem-icon"><i data-lucide="book-open" style="width:24px;height:24px;"></i></div>
+          <h3>סילבוס ענק, שנה קצרה</h3>
+          <p>את יודעת מה צריך ללמד. אבל איך מחלקים 60 שעות לשנה שלמה, עם חופשות באמצע?</p>
+        </div>
+        <div class="problem-card reveal reveal-d2">
+          <div class="problem-icon"><i data-lucide="calendar-x" style="width:24px;height:24px;"></i></div>
+          <h3>התוכנית מתפוררת</h3>
+          <p>ביטולים, חופשות, ימי שיא. עד דצמבר התוכנית כבר לא רלוונטית.</p>
+        </div>
+        <div class="problem-card reveal reveal-d3">
+          <div class="problem-icon"><i data-lucide="help-circle" style="width:24px;height:24px;"></i></div>
+          <h3>הכיתה לא הבינה, ומה עכשיו?</h3>
+          <p>לא הספקת, הכיתה לא הבינה, ואין מי שיגיד לך מה השיעור הבא הנכון.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="container text-center">
+      <div class="section-label en reveal">HOW IT WORKS</div>
+      <h2 class="section-title reveal">שלושה שלבים. שנת הוראה שלמה.</h2>
+      <div class="steps-grid">
+        <div class="step reveal reveal-d1">
+          <div class="step-num en">01</div>
+          <div class="step-line"></div>
+          <h3>מכניסה את הפרטים</h3>
+          <p>מקצוע, כיתות, מערכת שעות. פעם אחת בתחילת השנה.</p>
+        </div>
+        <div class="step reveal reveal-d2">
+          <div class="step-num en">02</div>
+          <div class="step-line"></div>
+          <h3>מקבלת תוכנית שנתית</h3>
+          <p>שיעורים לפי תאריכים אמיתיים, חופשות מחושבות, שבועות גמישים.</p>
+        </div>
+        <div class="step reveal reveal-d3">
+          <div class="step-num en">03</div>
+          <div class="step-line"></div>
+          <h3>מלמדת ומדווחת</h3>
+          <p>דיווח של 30 שניות אחרי כל שיעור. המערכת מתאימה את ההמשך.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LESSON -->
+  <section id="lesson" class="bg-gray">
+    <div class="container">
+      <div class="showcase">
+        <div class="lesson-frame reveal">
+          <div class="lesson-frame-bar"><span></span><span></span><span></span></div>
+          <div class="lesson-frame-body">
+            <div class="lf-head">
+              <div class="lf-head-top en">LESSON 10 / 14</div>
+              <h4>הכנסייה בימי הביניים — עוצמה ותפקיד</h4>
+              <p>ז׳2 &middot; יום שני 13.1 &middot; 10:00</p>
+            </div>
+            <div class="lf-block">
+              <div class="lf-block-title"><i data-lucide="target" style="width:15px;height:15px;color:var(--indigo-light);"></i> מטרות</div>
+              <ul>
+                <li>הבנת תפקיד הכנסייה כמוסד חברתי, כלכלי ופוליטי</li>
+                <li>זיהוי מקורות הכוח של הכנסייה</li>
+              </ul>
+            </div>
+            <div class="lf-block">
+              <div class="lf-block-title"><i data-lucide="play" style="width:15px;height:15px;color:var(--indigo-light);"></i> פתיחה (10 דק׳)</div>
+              <p>"מי הדמות הכי חזקה בעולם?" — דיון, חיבור לימי הביניים</p>
+            </div>
+            <div class="lf-block">
+              <div class="lf-block-title"><i data-lucide="layers" style="width:15px;height:15px;color:var(--indigo-light);"></i> גוף השיעור (25 דק׳)</div>
+              <ul>
+                <li>היררכיה: אפיפיור &rarr; בישופים &rarr; כמרים</li>
+                <li>מקורות כוח: קרקעות, השכלה, חוק</li>
+                <li>עבודה בזוגות — טבלת השוואה</li>
+              </ul>
+            </div>
+            <div class="lf-block">
+              <div class="lf-block-title"><i data-lucide="home" style="width:15px;height:15px;color:var(--indigo-light);"></i> שיעורי בית</div>
+              <p>שאלות 1-3 בסוף הפרק</p>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-info reveal reveal-d2">
+          <div class="section-label en">THE LESSON</div>
+          <h2 class="section-title">השיעור הבא שלך —<br>מוכן ומחכה.</h2>
+          <p class="section-sub">נכנסת ורואה שיעור מלא. מטרות, פתיחה, גוף, תרגול, סיכום וחומרים — הכל מותאם לסילבוס.</p>
+          <ul class="feature-list">
+            <li><div class="feature-check">&#10003;</div> מטרות לפי תוכנית משרד החינוך</li>
+            <li><div class="feature-check">&#10003;</div> פתיחה, גוף, תרגול וסיכום</li>
+            <li><div class="feature-check">&#10003;</div> דפי עבודה וחומרים מצורפים</li>
+            <li><div class="feature-check">&#10003;</div> דיווח 30 שניות &rarr; השיעור הבא מתעדכן</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINCIPAL -->
+  <section id="principal">
+    <div class="container">
+      <div class="showcase reverse">
+        <div class="showcase-info reveal">
+          <div class="section-label en">FOR PRINCIPALS</div>
+          <h2 class="section-title">תמונת מצב<br>בלי לרדוף אחרי מורות.</h2>
+          <p class="section-sub">הדשבורד מזהה בעיות לפני שהן מצטברות. תמיכה, לא פיקוח.</p>
+          <ul class="feature-list">
+            <li><div class="feature-check">&#10003;</div> התקדמות כל הכיתות מול הסילבוס</li>
+            <li><div class="feature-check">&#10003;</div> זיהוי כיתות בפיגור אוטומטי</li>
+            <li><div class="feature-check">&#10003;</div> המלצות תמיכה למורות</li>
+            <li><div class="feature-check">&#10003;</div> השוואה בין כיתות מקבילות</li>
+          </ul>
+        </div>
+        <div class="lesson-frame reveal reveal-d2">
+          <div class="lesson-frame-bar"><span></span><span></span><span></span></div>
+          <div class="lesson-frame-body">
+            <div style="font-size:18px;font-weight:800;margin-bottom:2px;">דשבורד מנהלת</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.35);margin-bottom:18px;font-family:'Space Grotesk';letter-spacing:1px;text-transform:uppercase;">Hagiva School &middot; History Grade 7</div>
+
+            <div class="pf-alert">
+              <div class="pf-alert-title en">&#9888; ATTENTION</div>
+              <ul style="list-style:none;">
+                <li>&middot; ז׳2 בפיגור של שבוע — נועה כהן</li>
+                <li>&middot; ז׳4 לא דווחו 3 שיעורים — דנה לוי</li>
+                <li>&middot; ז׳5 "לא הבינו" 3 פעמים ברצף</li>
+              </ul>
+            </div>
+
+            <table class="pf-table">
+              <thead><tr><th>מורה</th><th>כיתות</th><th>קצב</th><th>דיווח</th></tr></thead>
+              <tbody>
+                <tr><td>נועה כהן</td><td>ז׳1, ז׳2</td><td class="s-warn">&#9888; פיגור</td><td>90%</td></tr>
+                <tr><td>שרית אבו</td><td>ז׳3, ז׳4</td><td class="s-ok">&#10003; תקין</td><td>95%</td></tr>
+                <tr><td>דנה לוי</td><td>ז׳5, ז׳6</td><td class="s-ok">&#10003; תקין</td><td class="s-bad">72%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="bg-gray">
+    <div class="container text-center">
+      <div class="section-label en reveal">TESTIMONIALS</div>
+      <h2 class="section-title reveal">מה אומרות מורות ומנהלות</h2>
+      <div class="test-grid">
+        <div class="test-card reveal reveal-d1">
+          <p>בפעם הראשונה בחיים שלי, נכנסתי לשיעור ביום ראשון וידעתי בדיוק מה אני מלמדת. בלי לפתוח מסמכים.</p>
+          <div class="test-author"><strong>נועה כ.</strong> &middot; מורה להיסטוריה, רמת גן</div>
+        </div>
+        <div class="test-card reveal reveal-d2">
+          <p>אני רואה בדיוק איפה כל מורה עומדת, בלי מיילים ובלי ישיבות. זה חוסך לי שעות בשבוע.</p>
+          <div class="test-author"><strong>מיכל ש.</strong> &middot; מנהלת בית ספר, חיפה</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUMBERS -->
+  <section>
+    <div class="container text-center">
+      <div class="section-label en reveal">BY THE NUMBERS</div>
+      <h2 class="section-title reveal">מספרים שמספרים את הסיפור.</h2>
+      <div class="numbers-grid">
+        <div class="number-item reveal reveal-d1">
+          <h3 class="en">60</h3>
+          <p>שיעורים מתוכננים<br>אוטומטית</p>
+        </div>
+        <div class="number-item reveal reveal-d2">
+          <h3 class="en">12</h3>
+          <p>חופשות שכבר<br>מחושבות</p>
+        </div>
+        <div class="number-item reveal reveal-d3">
+          <h3 class="en">30s</h3>
+          <p>דיווח אחרי שיעור<br>שמשנה את ההמשך</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta" class="cta-section">
+    <div class="container">
+      <div class="section-label en reveal">GET STARTED</div>
+      <h2 class="section-title reveal" style="color:white;">מוכנה לשנת הוראה<br>שמתנהלת <span style="color:var(--indigo-light);">בעצמה</span>?</h2>
+      <p class="section-sub reveal" style="color:rgba(255,255,255,0.45);margin:0 auto 32px;">היסטוריה כיתה ז׳ — זמינה עכשיו בחינם.</p>
+      <div class="reveal reveal-d1" style="margin-bottom:24px;">
+        <a href="#" class="btn btn-primary" style="font-size:17px;padding:16px 44px;">התחילי בחינם</a>
+      </div>
+      <div class="cta-or reveal reveal-d2">או השאירי פרטים</div>
+      <form class="cta-form reveal reveal-d3" onsubmit="event.preventDefault();this.innerHTML='<p style=color:var(--green);font-size:18px;font-weight:700;text-align:center;padding:20px;>תודה! נחזור אלייך בקרוב.</p>';">
+        <input type="text" placeholder="שם מלא" required>
+        <input type="tel" placeholder="טלפון" required>
+        <input type="text" placeholder="שם בית הספר">
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">שלחי</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo en" style="color:white;">Class<span>OS</span></a>
+          <p>מערכת ההפעלה של שנת ההוראה.</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="en">Product</h4>
+          <a href="#how">איך זה עובד</a>
+          <a href="#lesson">למורים</a>
+          <a href="#principal">למנהלות</a>
+        </div>
+        <div class="footer-col">
+          <h4 class="en">Company</h4>
+          <a href="#">מי אנחנו</a>
+          <a href="#">בלוג</a>
+        </div>
+        <div class="footer-col">
+          <h4 class="en">Support</h4>
+          <a href="#">שאלות נפוצות</a>
+          <a href="#">צור קשר</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="en">&copy; 2026 ClassOS.</span> כל הזכויות שמורות.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    lucide.createIcons();
+  </script>
+
+</body>
+</html>
