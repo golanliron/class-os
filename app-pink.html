@@ -9,7 +9,7 @@
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     :root{
-      --bg:#FFFFFF;--surface:#fff;--surface-glass:#fff;
+      --bg:#F9FAFB;--surface:#fff;--surface-glass:#fff;
       --accent:#EC4899;--accent2:#EC4899;--accent-glow:rgba(236,72,153,.06);--accent-bg:rgba(236,72,153,.04);
       --dark:#111827;--dark2:#1F2937;--text:#111827;--text2:#6B7280;--text3:#9CA3AF;
       --border:#E5E7EB;--border2:#F3F4F6;
@@ -24,13 +24,13 @@
     .sidebar{width:var(--sidebar-w);background:#111827;display:flex;flex-direction:column;position:fixed;top:0;right:0;bottom:0;z-index:50;padding:20px 14px}
     .sidebar-brand{text-align:center;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.08)}
     .sidebar-brand-text{font-family:'Space Grotesk';font-size:22px;font-weight:800;color:#fff;letter-spacing:-1.5px}
-    .sidebar-brand-text span{color:#F472B6}
+    .sidebar-brand-text span{color:#F9A8D4}
     .sidebar-brand-sub{font-size:10px;color:rgba(255,255,255,.35);margin-top:3px;letter-spacing:.3px;font-weight:400}
     .sidebar-nav{flex:1;display:flex;flex-direction:column;gap:1px}
     .nav-item{display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:8px;color:rgba(255,255,255,.4);text-decoration:none;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s ease;position:relative}
     .nav-item:hover{color:rgba(255,255,255,.75);background:rgba(255,255,255,.05)}
     .nav-item.active{color:#fff;background:rgba(255,255,255,.08);font-weight:600}
-    .nav-item.active::before{content:'';position:absolute;right:-14px;top:50%;transform:translateY(-50%);width:2px;height:20px;border-radius:2px;background:#F472B6}
+    .nav-item.active::before{content:'';position:absolute;right:-14px;top:50%;transform:translateY(-50%);width:2px;height:20px;border-radius:2px;background:#F9A8D4}
     .nav-icon{width:18px;height:18px;opacity:.5;flex-shrink:0}
     .nav-item.active .nav-icon{opacity:.9}
     .nav-sep{height:1px;background:rgba(255,255,255,.06);margin:10px 0}
@@ -205,8 +205,8 @@
     .sch-slot:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.1)}
     .sch-slot:hover .sch-del{opacity:1}
     .sch-slot.c1{background:linear-gradient(145deg,#EC4899,#DB2777);color:#fff;border-color:rgba(236,72,153,.15)}
-    .sch-slot.c2{background:linear-gradient(145deg,#BE185D,#9D174D);color:#fff;border-color:rgba(190,24,93,.15)}
-    .sch-slot.c3{background:linear-gradient(145deg,#F472B6,#EC4899);color:#fff;border-color:rgba(244,114,182,.15)}
+    .sch-slot.c2{background:linear-gradient(145deg,#F472B6,#DB2777);color:#fff;border-color:rgba(236,72,153,.15)}
+    .sch-slot.c3{background:linear-gradient(145deg,#F9A8D4,#EC4899);color:#fff;border-color:rgba(249,168,212,.15)}
     .sch-slot.exam{background:#FEF2F2;color:#111827;border:1.5px solid #FECACA}
     .sch-slot.exam .sch-slot-class{color:#DC2626}
     .sch-slot.trip{background:#ECFDF5;color:#111827;border:1.5px solid #A7F3D0}
@@ -352,12 +352,12 @@
     .leg-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,10,20,.85);backdrop-filter:blur(20px);z-index:9999;display:flex;align-items:center;justify-content:center;animation:fadeIn .3s}
     .leg-card{background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:24px;padding:40px;max-width:520px;width:90%;color:#fff;position:relative;overflow:hidden;border:1px solid rgba(236,72,153,.2);box-shadow:0 20px 60px rgba(0,0,0,.5)}
     .leg-progress-bar{height:4px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;margin:20px 0}
-    .leg-progress-fill{height:100%;background:linear-gradient(90deg,#6C5CE7,#A29BFE,#6C5CE7);background-size:200%;border-radius:2px;animation:shimmer 1.5s infinite linear;transition:width .5s}
+    .leg-progress-fill{height:100%;background:linear-gradient(90deg,#EC4899,#FBCFE8,#EC4899);background-size:200%;border-radius:2px;animation:shimmer 1.5s infinite linear;transition:width .5s}
     .leg-step{display:flex;align-items:center;gap:12px;padding:10px 0;font-size:12px;color:rgba(255,255,255,.35);transition:all .3s}
     .leg-step.active{color:rgba(255,255,255,.9)}
     .leg-step.done{color:rgba(52,211,153,.7)}
     .leg-step-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.1);flex-shrink:0;transition:all .3s}
-    .leg-step.active .leg-step-dot{background:#6C5CE7;box-shadow:0 0 12px rgba(236,72,153,.5)}
+    .leg-step.active .leg-step-dot{background:#EC4899;box-shadow:0 0 12px rgba(236,72,153,.5)}
     .leg-step.done .leg-step-dot{background:#00b894;box-shadow:0 0 8px rgba(52,211,153,.4)}
     .anim{animation:fadeIn .4s var(--ease) forwards}
     .d1{animation-delay:.04s;opacity:0}.d2{animation-delay:.08s;opacity:0}.d3{animation-delay:.12s;opacity:0}.d4{animation-delay:.16s;opacity:0}.d5{animation-delay:.2s;opacity:0}
@@ -683,7 +683,7 @@
               <div style="font-size:9px;color:rgba(255,255,255,.45)">דף עבודה</div>
             </div>
             <div onclick="generateLessonExperience()" style="padding:16px 10px;border-radius:10px;background:#1e3a5f;cursor:pointer;text-align:center;transition:all .15s;position:relative" onmouseover="this.style.background='#264a73'" onmouseout="this.style.background='#1e3a5f'">
-              <div style="font-size:12px;font-weight:700;color:#F472B6;margin-bottom:3px">חוויית שיעור</div>
+              <div style="font-size:12px;font-weight:700;color:#F9A8D4;margin-bottom:3px">חוויית שיעור</div>
               <div style="font-size:9px;color:rgba(255,255,255,.45)">AI מלא</div>
             </div>
           </div>
@@ -868,7 +868,7 @@
         </div>
 
         <!-- AI insight -->
-        <div class="anim d4" style="padding:14px 18px;border-radius:14px;margin-bottom:20px;background:linear-gradient(135deg,rgba(236,72,153,.06),rgba(162,155,254,.04));border:1px solid rgba(236,72,153,.12);display:flex;align-items:flex-start;gap:12px">
+        <div class="anim d4" style="padding:14px 18px;border-radius:14px;margin-bottom:20px;background:linear-gradient(135deg,rgba(236,72,153,.06),rgba(251,207,232,.04));border:1px solid rgba(236,72,153,.12);display:flex;align-items:flex-start;gap:12px">
           <div style="width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;color:#fff">&#10038;</div>
           <div style="flex:1">
             <div style="font-size:10px;font-weight:700;color:var(--accent);margin-bottom:2px">המלצה חכמה</div>
@@ -1024,7 +1024,7 @@
                 <div style="font-size:9px;color:var(--text3);font-weight:600">ז׳2</div>
               </div>
               <div style="text-align:center;padding:8px 14px;background:var(--surface);border:1px solid var(--border);border-radius:10px;min-width:48px">
-                <div class="en" style="font-size:18px;font-weight:800;color:#F472B6">2</div>
+                <div class="en" style="font-size:18px;font-weight:800;color:#F9A8D4">2</div>
                 <div style="font-size:9px;color:var(--text3);font-weight:600">ז׳3</div>
               </div>
             </div>
@@ -1511,7 +1511,7 @@
           <div style="font-size:14px;font-weight:800;margin-bottom:10px">הערכה מעצבת וחלופית</div>
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
             <div style="padding:20px 16px;cursor:pointer;border-radius:16px;border:1px solid rgba(236,72,153,.1);background:var(--surface);transition:all .3s;text-align:center;overflow:hidden;position:relative" onmouseover="this.style.borderColor='rgba(236,72,153,.25)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(236,72,153,.1)'" onmouseout="this.style.borderColor='rgba(236,72,153,.1)';this.style.transform='';this.style.boxShadow=''">
-              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#6C5CE7,#A29BFE)"></div>
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#EC4899,#FBCFE8)"></div>
               <div style="font-size:22px;margin-bottom:8px;color:var(--accent)">✎</div>
               <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:4px">בוחן מעצב</div>
               <div style="font-size:10px;color:var(--text3);line-height:1.4">משוב מקדם למידה אחרי שיעור או יחידה</div>
@@ -1522,8 +1522,8 @@
               <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:4px">הערכה מסכמת</div>
               <div style="font-size:10px;color:var(--text3);line-height:1.4">מיפוי הישגים לפי יחידות ומיומנויות</div>
             </div>
-            <div style="padding:20px 16px;cursor:pointer;border-radius:16px;border:1px solid rgba(162,155,254,.1);background:var(--surface);transition:all .3s;text-align:center;overflow:hidden;position:relative" onmouseover="this.style.borderColor='rgba(162,155,254,.25)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(162,155,254,.1)'" onmouseout="this.style.borderColor='rgba(162,155,254,.1)';this.style.transform='';this.style.boxShadow=''">
-              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#A29BFE,#6C5CE7)"></div>
+            <div style="padding:20px 16px;cursor:pointer;border-radius:16px;border:1px solid rgba(251,207,232,.1);background:var(--surface);transition:all .3s;text-align:center;overflow:hidden;position:relative" onmouseover="this.style.borderColor='rgba(251,207,232,.25)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(251,207,232,.1)'" onmouseout="this.style.borderColor='rgba(251,207,232,.1)';this.style.transform='';this.style.boxShadow=''">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#FBCFE8,#EC4899)"></div>
               <div style="font-size:22px;margin-bottom:8px;color:var(--accent)">↗</div>
               <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:4px">כרטיס יציאה</div>
               <div style="font-size:10px;color:var(--text3);line-height:1.4">רפלקציה של 3 דקות בסוף שיעור</div>
@@ -1535,7 +1535,7 @@
               <div style="font-size:10px;color:var(--text3);line-height:1.4">PBL — חקירה בזוגות, השוואה או יצירה</div>
             </div>
             <div style="padding:20px 16px;cursor:pointer;border-radius:16px;border:1px solid rgba(236,72,153,.1);background:var(--surface);transition:all .3s;text-align:center;overflow:hidden;position:relative" onmouseover="this.style.borderColor='rgba(236,72,153,.25)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(236,72,153,.1)'" onmouseout="this.style.borderColor='rgba(236,72,153,.1)';this.style.transform='';this.style.boxShadow=''">
-              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#6C5CE7,#A29BFE)"></div>
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#EC4899,#FBCFE8)"></div>
               <div style="font-size:22px;margin-bottom:8px;color:var(--accent)">⊞</div>
               <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:4px">רובריקה</div>
               <div style="font-size:10px;color:var(--text3);line-height:1.4">קריטריונים שקופים להערכת ביצוע</div>
@@ -1569,7 +1569,7 @@
             </div>
             <div style="border-radius:16px;padding:0;overflow:hidden;border:1px solid rgba(236,72,153,.1);background:var(--surface);transition:all .25s" onmouseover="this.style.boxShadow='0 8px 24px rgba(236,72,153,.08)'" onmouseout="this.style.boxShadow=''">
               <div style="background:linear-gradient(135deg,rgba(236,72,153,.06),transparent);padding:16px 20px;display:flex;align-items:center;gap:14px">
-                <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#6C5CE7,#A29BFE);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;color:#fff;box-shadow:0 4px 12px rgba(236,72,153,.25)">&#9998;</div>
+                <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#EC4899,#FBCFE8);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;color:#fff;box-shadow:0 4px 12px rgba(236,72,153,.25)">&#9998;</div>
                 <div style="flex:1;font-size:12px;color:var(--text2);line-height:1.6">מיומנות <strong style="color:var(--text)">עבודה עם מקור היסטורי</strong> בתהליך. שלבי שאלה עם מקור קצר.</div>
                 <button style="padding:8px 16px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;font-family:'Heebo';font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;box-shadow:0 4px 12px rgba(236,72,153,.2)">הוסיפי שאלה</button>
               </div>
@@ -1981,17 +1981,17 @@ function diffSelectClass(cls){
 // ====== DATA ======
 var UNITS=[
   {id:1,name:'מבוא ללימודי היסטוריה',lessons:3,color:'#EC4899',months:'ספט׳',topics:['מהי היסטוריה? מקורות ראשוניים ומשניים','ציר הזמן — תקופות בהיסטוריה','כלים: מפות, מסמכים, ממצאים ארכיאולוגיים']},
-  {id:2,name:'יוון העתיקה',lessons:7,color:'#F472B6',months:'ספט׳–אוק׳',topics:['הפוליס היוונית — אתונה וספרטה','הדמוקרטיה האתונאית','החברה היוונית — חינוך, נשים, עבדות','תרבות: פילוסופיה, תיאטרון, אולימפיאדה','מלחמות יוון–פרס','אלכסנדר מוקדון והתרבות ההלניסטית']},
-  {id:3,name:'רומא — רפובליקה ואימפריה',lessons:7,color:'#BE185D',months:'אוק׳–נוב׳',topics:['הקמת רומא — אגדה ומציאות','הרפובליקה הרומית — מוסדות וחוקים','יוליוס קיסר והמעבר לאימפריה','חיי היום-יום ברומא','תשתיות: כבישים, מים, ארכיטקטורה','שקיעת האימפריה המערבית']},
+  {id:2,name:'יוון העתיקה',lessons:7,color:'#F9A8D4',months:'ספט׳–אוק׳',topics:['הפוליס היוונית — אתונה וספרטה','הדמוקרטיה האתונאית','החברה היוונית — חינוך, נשים, עבדות','תרבות: פילוסופיה, תיאטרון, אולימפיאדה','מלחמות יוון–פרס','אלכסנדר מוקדון והתרבות ההלניסטית']},
+  {id:3,name:'רומא — רפובליקה ואימפריה',lessons:7,color:'#F472B6',months:'אוק׳–נוב׳',topics:['הקמת רומא — אגדה ומציאות','הרפובליקה הרומית — מוסדות וחוקים','יוליוס קיסר והמעבר לאימפריה','חיי היום-יום ברומא','תשתיות: כבישים, מים, ארכיטקטורה','שקיעת האימפריה המערבית']},
   {id:4,name:'לידת הנצרות והתפשטותה',lessons:4,color:'#8B5CF6',months:'נוב׳–דצמ׳',topics:['ישו מנצרת — חייו ומשנתו','מיהודה לאימפריה — התפשטות הנצרות','הנצרות כדת רשמית של רומא','עיקרי האמונה הנוצרית']},
   {id:5,name:'לידת האסלאם',lessons:5,color:'#3730A3',months:'דצמ׳–ינו׳',topics:['חצי האי ערב לפני האסלאם','מוחמד — חייו ומשנתו','חמשת עמודי האסלאם','התפשטות האסלאם — כיבושים','תרבות מוסלמית — מדע, רפואה, אדריכלות']},
   {id:6,name:'אירופה הפאודלית',lessons:6,color:'#EC4899',months:'ינו׳–פבר׳',topics:['מהו פאודליזם? היררכיה חברתית','סוזרן, ואסל, צמית — מערכת יחסים','החיים בטירה — אבירים וטורנירים','החיים בכפר — איכרים ועבודת אדמה','הכלכלה בימי הביניים — מסחר ושווקים']},
-  {id:7,name:'הכנסייה בימי הביניים',lessons:5,color:'#F472B6',months:'פבר׳–מרס',topics:['הכנסייה כמוסד — היררכיה ותפקידים','מקורות כוח: קרקע, השכלה, חוק','המנזרים — מרכזי ידע ותרבות','אמנות נוצרית — כנסיות, פסיפסים','חרם ואינקוויזיציה']},
-  {id:8,name:'מסעות הצלב',lessons:4,color:'#BE185D',months:'מרס',topics:['הרקע — מניעים דתיים ופוליטיים','מסע הצלב הראשון — כיבוש ירושלים','המסעות הנוספים — עליות ומורדות','תוצאות — מפגש תרבויות']},
+  {id:7,name:'הכנסייה בימי הביניים',lessons:5,color:'#F9A8D4',months:'פבר׳–מרס',topics:['הכנסייה כמוסד — היררכיה ותפקידים','מקורות כוח: קרקע, השכלה, חוק','המנזרים — מרכזי ידע ותרבות','אמנות נוצרית — כנסיות, פסיפסים','חרם ואינקוויזיציה']},
+  {id:8,name:'מסעות הצלב',lessons:4,color:'#F472B6',months:'מרס',topics:['הרקע — מניעים דתיים ופוליטיים','מסע הצלב הראשון — כיבוש ירושלים','המסעות הנוספים — עליות ומורדות','תוצאות — מפגש תרבויות']},
   {id:9,name:'היהודים בימי הביניים',lessons:5,color:'#8B5CF6',months:'מרס–אפר׳',topics:['הקהילה היהודית — מבנה והנהגה','עיסוקים — מסחר ומלווי כספים','גזרות ורדיפות — יחסי יהודים-נוצרים','יהודי ספרד — תור הזהב','רש"י ובעלי התוספות — מרכזי תורה']},
   {id:10,name:'הרנסנס — לידה מחדש',lessons:5,color:'#3730A3',months:'אפר׳–מאי',topics:['מהו הרנסנס? מימי הביניים לעת החדשה','ההומניזם — האדם במרכז','אמנות: לאונרדו, מיכלאנג׳לו, רפאל','הדפוס — גוטנברג ומהפכת המידע','מדע חדש: קופרניקוס וגלילאו']},
   {id:11,name:'עידן התגליות הגדולות',lessons:5,color:'#EC4899',months:'מאי–יוני',topics:['מניעים כלכליים וטכנולוגיים','קולומבוס — גילוי אמריקה 1492','ואסקו דה גמה ומגלן','כיבוש אמריקה — השלכות','עולם חדש — סחר, עבדות, אימפריות']},
-  {id:12,name:'סיכום ואינטגרציה',lessons:4,color:'#F472B6',months:'יוני',topics:['ציר הזמן הגדול — מהעת העתיקה לעת החדשה','השוואת תקופות — מה השתנה?','מושגי יסוד — חזרה כוללת','הכנה למבחן מסכם']}
+  {id:12,name:'סיכום ואינטגרציה',lessons:4,color:'#F9A8D4',months:'יוני',topics:['ציר הזמן הגדול — מהעת העתיקה לעת החדשה','השוואת תקופות — מה השתנה?','מושגי יסוד — חזרה כוללת','הכנה למבחן מסכם']}
 ];
 
 var SLOTS=[
@@ -2081,7 +2081,7 @@ var DN_FULL=['ראשון','שני','שלישי','רביעי','חמישי','שי�
   UNITS.forEach(function(u,i){
     var isDone=i<completedUnits;
     var isCurrent=i===completedUnits;
-    var statusBadge=isDone?'<span style="padding:2px 8px;border-radius:6px;background:rgba(52,211,153,.1);color:#34d399;font-size:9px;font-weight:700">✓ הושלמה</span>':isCurrent?'<span style="padding:2px 8px;border-radius:6px;background:rgba(236,72,153,.1);color:#A29BFE;font-size:9px;font-weight:700">⟶ עכשיו</span>':'';
+    var statusBadge=isDone?'<span style="padding:2px 8px;border-radius:6px;background:rgba(52,211,153,.1);color:#34d399;font-size:9px;font-weight:700">✓ הושלמה</span>':isCurrent?'<span style="padding:2px 8px;border-radius:6px;background:rgba(236,72,153,.1);color:#FBCFE8;font-size:9px;font-weight:700">⟶ עכשיו</span>':'';
     html+='<div class="cur-unit'+(isCurrent?' open':'')+'" onclick="this.classList.toggle(\'open\')">';
     html+='<div class="cur-unit-head"'+(isDone?' style="opacity:.6"':'')+'>';
     html+='<div class="cur-unit-num" style="background:'+u.color+'">'+(i+1)+'</div>';
@@ -2411,7 +2411,7 @@ function renderWeekDayDetail(){
     h+='<div style="font-size:9px;color:var(--text3)">45 דק׳</div>';
     h+='</div>';
     // Color stripe
-    var cc=l.cls==='ז׳1'?'#6C5CE7':l.cls==='ז׳2'?'#00b894':'#e17055';
+    var cc=l.cls==='ז׳1'?'#EC4899':l.cls==='ז׳2'?'#00b894':'#e17055';
     h+='<div style="width:3px;height:40px;border-radius:3px;background:'+cc+';flex-shrink:0"></div>';
     // Info
     h+='<div style="flex:1;min-width:0">';
@@ -2586,7 +2586,7 @@ function openWorksheet(){
 function openActivity(){
   var h='<div style="font-size:13px;font-weight:700;margin-bottom:12px;color:var(--text2)">כרטיסי תפקיד — עבודה בקבוצות</div>';
   var roles=[
-    {name:'האפיפיור',desc:'אתם מנהיגי הכנסייה. יש לכם סמכות על כל הנוצרים. מה הכוח שלכם?',color:'#6C5CE7'},
+    {name:'האפיפיור',desc:'אתם מנהיגי הכנסייה. יש לכם סמכות על כל הנוצרים. מה הכוח שלכם?',color:'#EC4899'},
     {name:'המלך',desc:'אתם שליטי הממלכה. יש לכם צבא. אבל האפיפיור יכול להחרים אתכם.',color:'#00b894'},
     {name:'האיכר',desc:'אתם עובדי האדמה. אתם משלמים עשור לכנסייה ומס למלך. מה אתם חושבים?',color:'#f39c12'},
     {name:'הנזיר',desc:'אתם חיים במנזר. אתם יודעים לקרוא ולכתוב. זה כוח אדיר בתקופה הזו.',color:'#e17055'}
